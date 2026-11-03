@@ -1,0 +1,283 @@
+/* Ankieta → chmura słów · styl marki BS (oxblood na papierze, serif, twarde rogi).
+   Fonty: EB Garamond, Carlito, Inconsolata – licencja SIL OFL (fonty/licencje). */
+
+@font-face { font-family: "BS Serif"; src: url("fonty/EBGaramond-400.ttf") format("truetype"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "BS Serif"; src: url("fonty/EBGaramond-500.ttf") format("truetype"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "BS Serif"; src: url("fonty/EBGaramond-600.ttf") format("truetype"); font-weight: 600 800; font-display: swap; }
+@font-face { font-family: "BS Serif"; src: url("fonty/EBGaramond-Italic-400.ttf") format("truetype"); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: "BS Sans"; src: url("fonty/Carlito-Regular.ttf") format("truetype"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "BS Sans"; src: url("fonty/Carlito-Bold.ttf") format("truetype"); font-weight: 700; font-display: swap; }
+@font-face { font-family: "BS Mono"; src: url("fonty/Inconsolata-Regular.ttf") format("truetype"); font-weight: 400; font-display: swap; }
+
+:root {
+  --bs-oxblood: #701828;
+  --bs-oxblood-deep: #4E0F1B;
+  --bs-oxblood-soft: #8A2C3C;
+  --bs-oxblood-50: #F5E7E9;
+  --bs-mark: #C28B00;
+  --bs-paper: #F6F1EA;
+  --bs-paper-2: #EFE8DC;
+  --bs-rule: #D9D1C2;
+  --bs-mute: #8A8275;
+  --bs-ink-2: #3A342B;
+  --bs-ink: #161310;
+  --bs-elevated: #FCFAF5;
+  --bs-dark: #141013;
+  --bs-dark-2: #1E181B;
+
+  --tlo: var(--bs-paper);
+  --tlo-2: var(--bs-elevated);
+  --tekst: var(--bs-ink);
+  --tekst-2: var(--bs-ink-2);
+  --tekst-3: var(--bs-mute);
+  --linia: var(--bs-rule);
+  --akcent: var(--bs-oxblood);
+  --akcent-2: var(--bs-oxblood-soft);
+
+  --serif: "BS Serif", "EB Garamond", Georgia, serif;
+  --sans: "BS Sans", Carlito, ui-sans-serif, system-ui, sans-serif;
+  --mono: "BS Mono", Inconsolata, ui-monospace, Menlo, monospace;
+  --ease: cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+
+.ciemny {
+  --tlo: var(--bs-dark);
+  --tlo-2: var(--bs-dark-2);
+  --tekst: #F2ECE3;
+  --tekst-2: #D8D0C4;
+  --tekst-3: #9B9383;
+  --linia: #3A3236;
+  --akcent: #D9707F;
+  --akcent-2: #C0505F;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { margin: 0; background: var(--tlo); color: var(--tekst); }
+body {
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+.osadzona { background: transparent; }
+
+.bs-eyebrow {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--tekst-3);
+  margin: 0;
+  text-decoration: none;
+}
+.bs-mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.bs-lede { font-size: 22px; line-height: 1.4; font-style: italic; color: var(--tekst); margin: 0 0 8px; }
+.bs-small { font-size: 15px; line-height: 1.45; color: var(--tekst-3); margin: 0; }
+.bs-h3 { font-weight: 500; font-size: clamp(22px, 2.4vw, 30px); line-height: 1.2; letter-spacing: -0.01em; margin: 8px 0; }
+
+.tylko-czytnik {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+/* --- Pasek i stopka ---------------------------------------------------- */
+.pasek {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px clamp(16px, 4vw, 48px);
+  border-bottom: 1px solid var(--linia);
+}
+.marka {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--sans); font-weight: 700; font-size: 15px;
+  color: var(--tekst); text-decoration: none;
+}
+.stopka {
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px;
+  padding: 20px clamp(16px, 4vw, 48px) 28px;
+  border-top: 1px solid var(--linia);
+  font-family: var(--sans); font-size: 13px; color: var(--tekst-3);
+}
+
+/* --- Układ strony ankiety --------------------------------------------- */
+.uklad {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: clamp(24px, 5vw, 64px) clamp(16px, 4vw, 48px);
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(28px, 5vw, 72px);
+  align-items: start;
+}
+.osadzona .uklad { padding: 8px 0 16px; }
+@media (max-width: 860px) {
+  .uklad { grid-template-columns: minmax(0, 1fr); }
+}
+
+.pytanie {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(32px, 4.2vw, 52px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin: 14px 0 14px;
+  text-wrap: balance;
+}
+.opis { color: var(--tekst-2); margin: 0 0 28px; text-wrap: pretty; }
+
+/* --- Formularz ---------------------------------------------------------- */
+.formularz { display: grid; gap: 10px; }
+.pulapka { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+
+.pole {
+  display: flex; align-items: center;
+  border: 1px solid var(--linia);
+  background: var(--tlo-2);
+  border-radius: 2px;
+  transition: border-color 120ms var(--ease);
+}
+.pole:focus-within { border-color: var(--akcent); }
+.pole-nr {
+  flex: none; width: 40px; text-align: center;
+  color: var(--tekst-3); font-size: 14px;
+  border-right: 1px solid var(--linia);
+  align-self: stretch; display: grid; place-items: center;
+}
+.pole input {
+  flex: 1; min-width: 0;
+  border: 0; outline: 0; background: transparent;
+  font-family: var(--serif); font-size: 20px; color: var(--tekst);
+  padding: 12px 14px;
+}
+.pole input::placeholder { color: var(--tekst-3); font-style: italic; }
+
+.akcje { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; margin-top: 8px; }
+
+.przycisk {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 46px; padding: 0 22px;
+  border: 1px solid var(--akcent); border-radius: 2px;
+  background: var(--akcent); color: #FCFAF5;
+  font-family: var(--sans); font-weight: 700; font-size: 15px; letter-spacing: 0.02em;
+  text-decoration: none; cursor: pointer;
+  transition: background-color 120ms var(--ease), border-color 120ms var(--ease);
+}
+.przycisk:hover { background: var(--bs-oxblood-deep); border-color: var(--bs-oxblood-deep); }
+.przycisk:focus-visible { outline: 2px solid var(--bs-mark); outline-offset: 2px; }
+.przycisk:disabled { opacity: 0.55; cursor: wait; }
+.przycisk-cichy { background: transparent; color: var(--akcent); }
+.przycisk-cichy:hover { background: var(--bs-oxblood-50); color: var(--bs-oxblood-deep); }
+.ciemny .przycisk-cichy:hover { background: var(--tlo-2); color: var(--tekst); }
+
+.komunikat { margin: 0; font-family: var(--sans); font-size: 14px; color: var(--akcent); }
+.podziekowanie { border-left: 2px solid var(--bs-mark); padding: 4px 0 4px 18px; }
+.zamknieta { font-style: italic; color: var(--tekst-2); }
+
+/* --- Chmura -------------------------------------------------------------- */
+.chmura-blok { min-width: 0; }
+.chmura-naglowek {
+  display: flex; justify-content: space-between; align-items: baseline;
+  padding-bottom: 12px; border-bottom: 1px solid var(--linia); margin-bottom: 4px;
+}
+.licznik { font-size: 14px; color: var(--tekst-3); }
+
+.chmura {
+  position: relative;
+  width: 100%;
+  height: clamp(320px, 52vw, 560px);
+  overflow: hidden;
+}
+@media (max-width: 860px) {
+  .chmura { height: clamp(300px, 90vw, 520px); }
+}
+.chmura-pusta {
+  position: absolute; inset: 0; display: grid; place-items: center; margin: 0;
+  font-style: italic; color: var(--tekst-3);
+}
+
+.slowo {
+  position: absolute; left: 0; top: 0;
+  font-family: var(--serif);
+  text-align: center; white-space: nowrap;
+  letter-spacing: -0.01em;
+  will-change: transform;
+  transition: transform 700ms var(--ease), font-size 700ms var(--ease), opacity 500ms var(--ease);
+  cursor: default;
+}
+.k-ox { color: var(--akcent); }
+.k-oxsoft { color: var(--akcent-2); }
+.k-ink { color: var(--tekst); }
+.k-ink2 { color: var(--tekst-2); }
+.k-mute { color: var(--tekst-3); }
+.slowo.twoje {
+  text-decoration: underline;
+  text-decoration-color: var(--bs-mark);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.12em;
+}
+@media (prefers-reduced-motion: reduce) {
+  .slowo { transition: none; }
+}
+
+/* --- Ekran na rzutnik ---------------------------------------------------- */
+.ekran {
+  height: 100vh; overflow: hidden;
+  display: grid; grid-template-rows: auto 1fr auto;
+  padding: clamp(20px, 3vw, 48px) clamp(24px, 4vw, 64px);
+  gap: clamp(12px, 2vh, 24px);
+}
+.ekran-gora {
+  display: flex; justify-content: space-between; align-items: flex-start; gap: 24px;
+  border-bottom: 1px solid var(--linia); padding-bottom: clamp(12px, 2vh, 24px);
+}
+.ekran-pytanie {
+  font-weight: 600;
+  font-size: clamp(32px, 4.4vw, 76px);
+  line-height: 1.04; letter-spacing: -0.02em;
+  margin: 12px 0 0; text-wrap: balance;
+}
+.ekran-logo { flex: none; }
+.ekran-chmura { height: auto; min-height: 0; }
+.ekran-dol {
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  border-top: 1px solid var(--linia); padding-top: clamp(12px, 2vh, 20px);
+}
+.ekran-qr { display: flex; align-items: center; gap: 20px; }
+.ekran-qr img { background: #FFFFFF; padding: 4px; image-rendering: pixelated; }
+.ekran-adres { font-size: clamp(18px, 1.6vw, 26px); margin: 10px 0 0; color: var(--tekst); }
+.ekran-licznik { display: grid; justify-items: end; gap: 8px; margin-left: auto; }
+.ekran-liczba { font-size: clamp(40px, 4vw, 72px); line-height: 1; color: var(--akcent); }
+:fullscreen #pelny { display: none; }
+
+/* --- Panel ---------------------------------------------------------------- */
+.panel-tresc { max-width: 980px; margin: 0 auto; padding: 32px clamp(16px, 4vw, 48px) 64px; display: grid; gap: 24px; }
+.panel-karta { border: 1px solid var(--linia); background: var(--tlo-2); border-radius: 4px; padding: 24px; display: grid; gap: 12px; }
+.panel-akcje { display: flex; flex-wrap: wrap; gap: 10px; }
+.panel-akcje form { display: contents; }
+.logowanie { max-width: 360px; margin: 48px auto; display: grid; gap: 14px; }
+.pole-pelne input { font-size: 18px; }
+.ostrzezenie { border-left: 2px solid var(--bs-mark); padding: 8px 16px; margin: 0; background: #F7EED8; font-family: var(--sans); font-size: 15px; }
+.info { border-left: 2px solid var(--akcent); padding: 8px 16px; margin: 0; background: var(--tlo-2); font-family: var(--sans); font-size: 15px; }
+.zakladki { display: flex; flex-wrap: wrap; gap: 4px 20px; border-bottom: 1px solid var(--linia); }
+.zakladki a { font-family: var(--sans); font-weight: 700; font-size: 14px; color: var(--tekst-3); text-decoration: none; padding: 10px 0; border-bottom: 2px solid transparent; margin-bottom: -1px; }
+.zakladki a[aria-current] { color: var(--akcent); border-color: var(--akcent); }
+.kod { font-family: var(--mono); font-size: 13px; line-height: 1.5; background: var(--bs-paper-2); padding: 12px 14px; margin: 0; overflow-x: auto; white-space: pre-wrap; word-break: break-all; }
+
+.tabela { width: 100%; border-collapse: collapse; font-size: 16px; }
+.tabela th { font-family: var(--sans); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--tekst-3); text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--linia); }
+.tabela td { padding: 6px 10px; border-bottom: 1px solid var(--linia); vertical-align: middle; }
+.tabela .liczba { text-align: right; width: 64px; }
+.tabela tr.ukryty td:first-child { color: var(--tekst-3); text-decoration: line-through; }
+.tabela form { margin: 0; }
+.scal { display: flex; gap: 8px; align-items: center; }
+.scal input, .wyczysc input { font-family: var(--serif); font-size: 15px; border: 1px solid var(--linia); background: var(--tlo); padding: 5px 8px; border-radius: 2px; min-width: 0; width: 100%; max-width: 220px; }
+.wyczysc { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.wyczysc .pole input { padding: 10px 12px; max-width: none; border: 0; }
+.link { border: 0; background: none; padding: 0; font-family: var(--sans); font-weight: 700; font-size: 14px; color: var(--akcent); cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 640px) {
+  .tabela th:nth-child(4), .tabela td:nth-child(4) { display: none; }
+}
+.ciemny .ekran-logo { background: var(--bs-paper); padding: 4px; }

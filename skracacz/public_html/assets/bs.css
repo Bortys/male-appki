@@ -1,0 +1,126 @@
+/* Skracacz w marce BS. Tokeny z BS Design System (colors_and_type.css).
+   Fonty open source (OFL): EB Garamond, Carlito, Inconsolata – licencje w fonts/licencje/. */
+@font-face { font-family: "BS Serif"; src: url("fonts/EBGaramond-400.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "BS Serif"; src: url("fonts/EBGaramond-500.woff2") format("woff2"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "BS Serif"; src: url("fonts/EBGaramond-600.woff2") format("woff2"); font-weight: 600 800; font-display: swap; }
+@font-face { font-family: "BS Serif"; src: url("fonts/EBGaramond-Italic-400.woff2") format("woff2"); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: "BS Sans"; src: url("fonts/Carlito-Regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "BS Sans"; src: url("fonts/Carlito-Bold.woff2") format("woff2"); font-weight: 700; font-display: swap; }
+@font-face { font-family: "BS Mono"; src: url("fonts/Inconsolata-Regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+
+:root {
+  --bs-oxblood: #701828; --bs-oxblood-deep: #4E0F1B; --bs-oxblood-50: #F5E7E9;
+  --bs-mark: #C28B00;
+  --bs-paper: #F6F1EA; --bs-paper-2: #EFE8DC; --bs-rule: #D9D1C2;
+  --bs-mute: #8A8275; --bs-ink-2: #3A342B; --bs-ink: #161310;
+  --bs-positive: #2E5D3A; --bs-bg-elevated: #FCFAF5; --bs-border-strong: #9B9383;
+  --bs-font-display: "BS Serif", "EB Garamond", Georgia, serif;
+  --bs-font-ui: "BS Sans", Carlito, Calibri, system-ui, sans-serif;
+  --bs-font-mono: "BS Mono", Inconsolata, Menlo, monospace;
+  --bs-ease: cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+
+* { box-sizing: border-box; }
+html, body {
+  margin: 0; background: var(--bs-paper); color: var(--bs-ink);
+  font-family: var(--bs-font-display); font-size: 17px; line-height: 1.55;
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+}
+.wrap { max-width: 1040px; margin: 0 auto; padding: 0 32px 96px; }
+
+/* Nagłówek: logo, nazwa, linia */
+.masthead {
+  display: flex; align-items: center; gap: 16px;
+  padding: 32px 0 20px; border-bottom: 1px solid var(--bs-ink); margin-bottom: 48px;
+}
+.masthead img { width: 44px; height: auto; display: block; }
+.masthead .name { font-family: var(--bs-font-display); font-weight: 600; font-size: 24px; letter-spacing: -0.01em; line-height: 1; }
+.masthead .eyebrow { margin-top: 6px; }
+.masthead .right { margin-left: auto; font-family: var(--bs-font-ui); font-size: 14px; }
+
+.eyebrow {
+  font-family: var(--bs-font-ui); font-weight: 700; font-size: 11px; line-height: 1;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--bs-mute);
+}
+h1 { font-weight: 600; font-size: clamp(36px, 5vw, 56px); line-height: 1.02; letter-spacing: -0.02em; margin: 12px 0 8px; text-wrap: balance; }
+h2 { font-weight: 500; font-size: 28px; line-height: 1.1; letter-spacing: -0.015em; margin: 56px 0 16px; }
+.lede { font-style: italic; font-size: 21px; line-height: 1.4; color: var(--bs-ink-2); margin: 0 0 32px; overflow-wrap: anywhere; }
+p { color: var(--bs-ink-2); }
+.mono, code, pre, td.num { font-family: var(--bs-font-mono); font-variant-numeric: tabular-nums; }
+
+a { color: var(--bs-oxblood); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; transition: color 120ms var(--bs-ease); }
+a:hover { color: var(--bs-oxblood-deep); }
+
+/* Formularze */
+label.eyebrow { display: block; margin: 0 0 8px; }
+input {
+  font: inherit; font-size: 17px; color: var(--bs-ink);
+  background: var(--bs-bg-elevated); border: 1px solid var(--bs-rule); border-radius: 2px;
+  padding: 11px 14px; width: 100%;
+  transition: border-color 120ms var(--bs-ease);
+}
+input:focus { outline: none; border-color: var(--bs-oxblood); box-shadow: 0 0 0 1px var(--bs-oxblood); }
+input::placeholder { color: var(--bs-mute); font-style: italic; }
+input.big { font-size: 20px; padding: 14px 16px; }
+.row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 12px; }
+.row > * { flex: 1; min-width: 180px; }
+.row > button { flex: 0 0 auto; min-width: 0; }
+
+button {
+  font-family: var(--bs-font-ui); font-weight: 700; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase;
+  background: var(--bs-oxblood); color: var(--bs-paper); border: 1px solid var(--bs-oxblood); border-radius: 2px;
+  padding: 12px 22px; cursor: pointer; transition: background 120ms var(--bs-ease);
+}
+button:hover { background: var(--bs-oxblood-deep); border-color: var(--bs-oxblood-deep); }
+button.ghost { background: transparent; color: var(--bs-oxblood); }
+button.ghost:hover { background: var(--bs-oxblood-50); }
+button.lnk {
+  background: none; border: 0; padding: 0; color: var(--bs-oxblood); letter-spacing: 0.08em; font-size: 11px;
+  text-decoration: underline; text-underline-offset: 3px;
+}
+button.lnk:hover { color: var(--bs-oxblood-deep); background: none; }
+
+/* Komunikaty */
+.note { border-left: 3px solid var(--bs-oxblood); padding: 14px 20px; margin: 0 0 32px; background: var(--bs-bg-elevated); }
+.note.ok { border-left-color: var(--bs-positive); }
+.note .short { font-family: var(--bs-font-mono); font-size: 22px; color: var(--bs-ink); text-decoration: none; margin-right: 16px; }
+.note .short:hover { color: var(--bs-oxblood); }
+
+/* Tabela */
+table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+th {
+  font-family: var(--bs-font-ui); font-weight: 700; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--bs-mute); text-align: left; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--bs-ink);
+}
+td { padding: 14px 12px 14px 0; border-bottom: 1px solid var(--bs-rule); vertical-align: top; }
+td.code a { font-family: var(--bs-font-mono); font-size: 17px; text-decoration: none; color: var(--bs-ink); }
+td.code a:hover { color: var(--bs-oxblood); }
+td.url { max-width: 440px; overflow-wrap: anywhere; color: var(--bs-ink-2); font-size: 15px; }
+td.url small { display: block; margin-top: 4px; font-style: italic; color: var(--bs-mute); font-size: 14px; }
+td.num { text-align: right; font-size: 17px; }
+td.num a { text-decoration: none; color: var(--bs-ink); }
+td.num a:hover { color: var(--bs-oxblood); }
+td.date { font-family: var(--bs-font-mono); font-size: 14px; color: var(--bs-mute); white-space: nowrap; }
+th.r { text-align: right; }
+tr:hover td { background: rgba(112, 24, 40, 0.025); }
+
+/* Statystyki */
+.score { font-family: var(--bs-font-mono); font-size: 64px; line-height: 1; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.stats { display: flex; gap: 64px; flex-wrap: wrap; margin: 8px 0 16px; }
+.bar { height: 8px; background: var(--bs-oxblood); }
+
+.search { margin-top: 56px; }
+.foot { margin-top: 96px; padding-top: 16px; border-top: 1px solid var(--bs-rule); display: flex; justify-content: space-between; }
+
+/* Strony publiczne (start, 404, logowanie) */
+.center { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 32px; }
+.card { width: 100%; max-width: 440px; }
+.card img { width: 56px; display: block; margin-bottom: 32px; }
+.card h1 { font-size: 40px; }
+.card form { margin-top: 32px; }
+
+@media (max-width: 640px) {
+  .wrap { padding: 0 20px 64px; }
+  td.date, th.date { display: none; }
+  .note .short { display: block; font-size: 18px; margin-bottom: 8px; }
+}

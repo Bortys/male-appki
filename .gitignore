@@ -1,0 +1,16 @@
+# Sekrety i dane zostają tylko na serwerze
+config.php
+konfiguracja.php
+*.sqlite
+*.sqlite-*
+.env*
+skracacz/public_html/data/*
+!skracacz/public_html/data/.htaccess
+chmura/public_html/chmura/dane/*
+!chmura/public_html/chmura/dane/.htaccess
+!chmura/public_html/chmura/dane/index.php
+
+# Paczki do wgrania i śmieci
+dist/
+__pycache__/
+.DS_Store

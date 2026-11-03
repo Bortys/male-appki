@@ -1,0 +1,24 @@
+DirectoryIndex index.php
+Options -Indexes -MultiViews
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+# Z zewnątrz widać tylko assets/ i potwierdzenia certyfikatu Let's Encrypt.
+# Reszta, także nazwy istniejących plików (config.php, diag.php, README.md, data/),
+# trafia do index.php i kończy się stroną 404.
+RewriteRule ^(assets/|\.well-known/acme-challenge/) - [L]
+RewriteRule ^index\.php$ - [L]
+RewriteRule ^ index.php [L,QSA]
+</IfModule>
+
+# Druga warstwa na wypadek kłopotów z mod_rewrite
+<FilesMatch "^(config|diag|lib_[a-z]+)\.php$|\.(md|sqlite|zip|bak|log)$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>

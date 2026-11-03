@@ -1,0 +1,34 @@
+Małe appki
+Copyright 2026 Bartosz Sokoliński
+https://sokolinski.com
+
+Autor oprogramowania: Bartosz Sokoliński (https://sokolinski.com).
+Software author: Bartosz Sokoliński (https://sokolinski.com).
+
+Kod jest udostępniony na licencji Apache 2.0 (plik LICENSE). Kto rozpowszechnia
+ten kod albo oparte na nim dzieła, musi zachować tę informację o autorstwie,
+zgodnie z punktem 4(d) licencji.
+
+
+Czego licencja nie obejmuje
+---------------------------
+
+Logo BS (pliki logo-bs.png) oraz nazwisko Bartosz Sokoliński jako oznaczenie
+produktu nie są objęte licencją Apache 2.0. Wszelkie prawa zastrzeżone. Zanim
+uruchomisz te aplikacje u siebie, wymień logo i oznaczenia w plikach stron na
+własne. Nie dotyczy to informacji o autorstwie z tego pliku, którą trzeba zachować.
+
+The BS logo (logo-bs.png files) and the name Bartosz Sokoliński used as a product
+mark are not covered by the Apache 2.0 license. All rights reserved.
+
+
+Składniki innych autorów
+------------------------
+
+qrcode-generator, Copyright (c) 2009 Kazuhiko Arase, licencja MIT
+  chmura/public_html/chmura/zasoby/qrcode.js
+
+Fonty na licencji SIL Open Font License 1.1 (teksty w katalogach licencje/):
+  EB Garamond, Carlito, Inconsolata
+  chmura/public_html/chmura/zasoby/fonty/
+  skracacz/public_html/assets/fonts/

@@ -1,0 +1,22 @@
+# Ankieta: bez listowania katalogów, pliki pomocnicze niedostępne z zewnątrz.
+Options -Indexes
+<FilesMatch "^(wspolne|konfiguracja)\.php$|\.(md|bak|log)$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>
+# Główny .htaccess strony ma celowo szeroką politykę CSP. Ta aplikacja nie korzysta
+# z CDN-ów ani skryptów w HTML, więc tutaj może być ścisła.
+<IfModule mod_headers.c>
+  Header always set Content-Security-Policy "default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; frame-ancestors 'self'; base-uri 'none'; form-action 'self'"
+</IfModule>
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType font/ttf "access plus 1 year"
+  ExpiresByType application/x-font-ttf "access plus 1 year"
+</IfModule>
+AddType font/ttf .ttf
