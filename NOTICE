@@ -32,3 +32,32 @@ Fonty na licencji SIL Open Font License 1.1 (teksty w katalogach licencje/):
   EB Garamond, Carlito, Inconsolata
   chmura/public_html/chmura/zasoby/fonty/
   skracacz/public_html/assets/fonts/
+  przybornik/public_html/przybornik/zasoby/fonty/
+
+
+Przybornik: biblioteki pobierane osobno
+---------------------------------------
+
+Tych bibliotek nie ma w repozytorium. Skrypt przybornik/scripts/biblioteki.sh
+pobiera je z npm w przypiętych wersjach do przybornik/public_html/przybornik/lib/,
+razem z plikami licencji. Każda zachowuje własną licencję:
+
+  Ghostscript 9.56.0, kompilacja WebAssembly @jspawn/ghostscript-wasm 0.0.2
+    GNU Affero General Public License v3.0
+    Źródła kompilacji: https://github.com/jsscheller/ghostscript-wasm
+    Źródła Ghostscripta: https://ghostscript.com/releases/
+    Ghostscript działa jako osobny program w przeglądarce (Web Worker) i nie jest
+    objęty licencją Apache 2.0 tego repozytorium. Kto udostępnia Przybornik
+    publicznie, przekazuje gościom ten program i musi wskazać jego licencję oraz
+    źródła (robi to strona przybornik/licencje.html).
+  pdf.js 6.5.438 (Mozilla Foundation)            Apache License 2.0
+  pdf-lib 1.17.1 (Andrew Dillon)                 MIT
+  Tesseract.js 7.0.0, tesseract.js-core 7.0.0    Apache License 2.0
+  Dane języków Tesseract: pol, eng (best_int)    Apache License 2.0
+  Mediabunny 1.65.2 (Vanilagy)                   Mozilla Public License 2.0
+  fflate 0.8.3 (Arjun Barrett)                   MIT
+  qrcode-generator 1.4.4 (Kazuhiko Arase)        MIT
+
+Przybornik po stronie serwera korzysta z rozszerzenia PHP Imagick i biblioteki
+ImageMagick zainstalowanej na hostingu (ImageMagick License); nie są one częścią
+repozytorium.

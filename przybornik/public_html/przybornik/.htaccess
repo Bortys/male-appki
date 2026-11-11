@@ -1,0 +1,35 @@
+# Przybornik: bez listowania katalogów, pliki pomocnicze niedostępne z zewnątrz.
+Options -Indexes
+<FilesMatch "^(wspolne|obrazy|konfiguracja)\.php$|\.(md|bak|log)$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>
+
+# Moduły JS i WebAssembly muszą dojść z właściwym typem, inaczej przeglądarka ich nie uruchomi.
+AddType text/javascript .mjs
+AddType application/wasm .wasm
+AddType font/ttf .ttf
+
+<IfModule mod_headers.c>
+  # Główny .htaccess strony ma szeroką politykę CSP. Tu wszystko leży na miejscu, więc może być ścisła.
+  # wasm-unsafe-eval: Ghostscript, Tesseract i pdf.js działają jako WebAssembly.
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'wasm-unsafe-eval' blob:; worker-src 'self' blob:; img-src 'self' blob: data:; media-src 'self' blob:; connect-src 'self' blob: data:; style-src 'self'; font-src 'self' data: blob:; object-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'"
+  Header always set X-Robots-Tag "noindex, nofollow"
+  Header always set X-Content-Type-Options "nosniff"
+  # Skrypty i style: przeglądarka zawsze pyta, czy plik się zmienił (po aktualizacji nie zostaje stara wersja).
+  <FilesMatch "\.(js|mjs|css)$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType font/ttf "access plus 1 year"
+  ExpiresByType application/wasm "access plus 30 days"
+  ExpiresByType application/gzip "access plus 30 days"
+</IfModule>

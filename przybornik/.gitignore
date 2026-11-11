@@ -1,0 +1,15 @@
+# Sekrety i dane zostają tylko na serwerze (albo lokalnie do testów)
+public_html/przybornik/konfiguracja.php
+public_html/przybornik/dane/*
+!public_html/przybornik/dane/.htaccess
+!public_html/przybornik/dane/index.php
+tests/dev-haslo.txt
+
+# Biblioteki przeglądarkowe: 37 MB, odtwarzane przez scripts/biblioteki.sh
+public_html/przybornik/lib/
+
+# Paczki do wgrania i śmieci
+dist/
+node_modules/
+__pycache__/
+.DS_Store
