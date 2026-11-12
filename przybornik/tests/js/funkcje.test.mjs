@@ -76,6 +76,37 @@ test('MP4 do MP3: nazwy plików i czas', async () => {
   assert.deepEqual(JAKOSCI.map(([k]) => k), [128, 192, 320]);
 });
 
+test('Podgląd wpisu: liczenie jak w X, znaki, pierwsze zdanie', async () => {
+  const { liczX, linki, grafemy, statystyki, pierwszeZdanie, X_LIMIT } = await modul('narzedzia/wpis.js');
+  const waga = (t) => liczX(t).waga;
+  assert.equal(waga('Zażółć gęślą jaźń'), 17);                 // polskie litery ważą 1
+  assert.equal(waga('„cytat” — tak'), 13);                      // „ ” i — mieszczą się w zakresach X
+  assert.equal(waga('a…'), 3);                                  // wielokropek waży 2
+  assert.equal(waga('→ •'), 5);
+  assert.equal(waga('👍'), 2);
+  assert.equal(waga('👍🏽'), 2);                                  // emoji z odcieniem skóry to jedno emoji
+  assert.equal(waga('👨‍👩‍👧'), 2);
+  assert.equal(waga('🇵🇱'), 2);
+  assert.equal(waga('©'), 1);
+  assert.equal(waga('Zé'), 2);                            // po NFC „é” to jeden znak
+  assert.equal(waga('https://sokolinski.com/przybornik/#mp3'), 23);
+  assert.equal(waga('Zobacz sokolinski.com/przybornik.'), 7 + 23 + 1);
+  assert.equal(waga('Pisz: bartosz@sokolinski.pl'), 6 + 'bartosz@sokolinski.pl'.length);   // adres e-mail to nie link
+  assert.deepEqual(linki('np. itp. m.in. 1.5 x.com'), [[19, 24]]);
+  const dlugi = 'a'.repeat(250) + 'bbbbb' + '…'.repeat(20) + 'c';
+  const x = liczX(dlugi, [250, X_LIMIT]);
+  assert.equal(x.waga, 250 + 5 + 40 + 1);
+  assert.deepEqual(x.ciecia, [250, 255 + 12]);                  // 12 wielokropków daje 279, trzynasty (indeks 267) przekracza 280
+  assert.deepEqual(liczX('krótko', [250, 280]).ciecia, [null, null]);
+
+  assert.equal(grafemy('a👍🏽🇵🇱').length, 3);
+  assert.deepEqual(statystyki('  Pierwszy akapit, dwa-trzy słowa.\n\nDrugi 👍\n'), { znaki: 41, slowa: 5, akapity: 2 });   // „dwa-trzy” to jedno słowo
+  assert.deepEqual(statystyki(''), { znaki: 0, slowa: 0, akapity: 0 });
+  assert.equal(pierwszeZdanie('\nAI nie zastąpi ludzi. Zastąpi zadania.'), 'AI nie zastąpi ludzi.');
+  assert.equal(pierwszeZdanie('Hak bez kropki\nDruga linijka.'), 'Hak bez kropki');
+  assert.equal(pierwszeZdanie('Strona sokolinski.com działa… od dziś!'), 'Strona sokolinski.com działa…');
+});
+
 test('QR: macierz i SVG', async () => {
   const { macierz, naSvg } = await modul('narzedzia/qr.js');
   const piaskownica = {};

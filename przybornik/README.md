@@ -1,6 +1,6 @@
 # Przybornik (sokolinski.com/przybornik)
 
-Jedenaście małych narzędzi do plików w jednej stronie: zdjęcia, PDF, wideo, dźwięk, kod QR. Strona jest otwarta, bez hasła (hasło jest opcją), i ukryta przed wyszukiwarkami. Działa na zwykłym hostingu z PHP (Zenbox), bez bazy danych, bez builda i bez zewnętrznych usług. Wygląd: system marki BS (oxblood na papierze, EB Garamond, Carlito, Inconsolata).
+Dwanaście małych narzędzi w jednej stronie: zdjęcia, PDF, wideo, dźwięk, kod QR i podgląd wpisów do sociali. Strona jest otwarta, bez hasła (hasło jest opcją), i ukryta przed wyszukiwarkami. Działa na zwykłym hostingu z PHP (Zenbox), bez bazy danych, bez builda i bez zewnętrznych usług. Wygląd: system marki BS (oxblood na papierze, EB Garamond, Carlito, Inconsolata).
 
 | § | Narzędzie | Co robi | Gdzie pracuje |
 |---|---|---|---|
@@ -15,10 +15,11 @@ Jedenaście małych narzędzi do plików w jednej stronie: zdjęcia, PDF, wideo,
 | 09 | MP4 do MP3 | dźwięk z filmów jako MP3 (128, 192 albo 320 kb/s), kilka plików naraz, ZIP | przeglądarka (WebCodecs, LAME jako WebAssembly) |
 | 10 | Czyściciel | usuwa metadane ze zdjęć, PDF-ów i plików Office, pokazuje, co znalazł | przeglądarka; HEIC, WebP i TIFF na serwerze |
 | 11 | QR z logo | kod QR w kolorach marki, PNG i SVG | przeglądarka |
-| 12 | Chmura słów | odnośniki do ankiety z chmurą słów: formularz, rzutnik, panel | osobna aplikacja |
-| 13 | Skracacz linków | odnośnik do panelu skracacza go.sokolinski.com | osobna aplikacja |
+| 12 | Podgląd wpisu | gdzie LinkedIn utnie wpis na „…więcej” (telefon i komputer), ile znaków policzy X (próg 250 albo 280), limity LinkedIn, X, Instagram | przeglądarka |
+| 13 | Chmura słów | odnośniki do ankiety z chmurą słów: formularz, rzutnik, panel | osobna aplikacja |
+| 14 | Skracacz linków | odnośnik do panelu skracacza go.sokolinski.com | osobna aplikacja |
 
-Grupa „Moje aplikacje” (§ 12 i 13) to tylko odnośniki: chmura słów i skracacz działają osobno, z własnymi panelami i hasłami (kod w katalogach [`chmura/`](../chmura/) i [`skracacz/`](../skracacz/) tego repozytorium). Listę odnośników można zmienić stałą `APLIKACJE` w konfiguracji.
+Grupa „Moje aplikacje” (§ 13 i 14) to tylko odnośniki: chmura słów i skracacz działają osobno, z własnymi panelami i hasłami (kod w katalogach [`chmura/`](../chmura/) i [`skracacz/`](../skracacz/) tego repozytorium). Listę odnośników można zmienić stałą `APLIKACJE` w konfiguracji.
 
 Serwer robi tylko to, w czym jest lepszy: czyta HEIC i dobiera jakość JPG z dokładnością do punktu. Na Zenboxie PHP nie może uruchamiać programów (`exec` wyłączone), więc Ghostscript, Tesseract i kodowanie wideo działają w przeglądarce. Pliki obrabiane w przeglądarce nie opuszczają komputera; pliki wysłane do Ściskacza i Kadrownika serwer przerabia w pamięci i niczego nie zapisuje.
 
@@ -69,12 +70,14 @@ PHP 8.1 do 8.4 z rozszerzeniami Imagick (z obsługą HEIC) i zip. Stan Zenboxa z
 
 Przeglądarka: aktualny Chrome, Edge albo Safari. Pion do sociali wymaga WebCodecs z kodowaniem H.264 (Chrome, Edge, Safari 17 i nowsze). MP4 do MP3 potrzebuje dekodera dźwięku WebCodecs (sprawdzone w Chrome, Safari jeszcze nie); MP3 koduje LAME w WebAssembly, więc przeglądarka nie musi umieć zapisywać MP3. Gdy przeglądarka nie odczyta dźwięku, narzędzie mówi to przy pliku.
 
+Podgląd wpisu: LinkedIn nie podaje, gdzie ucina wpis, więc narzędzie mierzy 3 linijki tekstu w czcionce systemowej, w kolumnie szerokiej jak kanał w telefonie (361 px, 15 px) i na komputerze (504 px, 14 px). Polski tekst daje wtedy ok. 130–140 i 210–225 znaków, tyle, ile podaje większość zestawień. X liczy się według reguł biblioteki twitter-text (konfiguracja v3): znaki spoza podstawowych zakresów i emoji ważą 2, link 23. Szkic zostaje w `localStorage` przeglądarki, na serwer nic nie idzie.
+
 ## Testy
 
 ```bash
 python3 tests/uruchom.py            # serwer: logowanie, blokady, Ściskacz, Kadrownik (Docker, PHP 8.4 z Imagick)
 PHP=8.1 python3 tests/uruchom.py    # to samo na wersji z serwera
-node --test tests/js/*.test.mjs     # funkcje przeglądarkowe: Czyściciel, kadry, napisy, nazwy MP3, QR
+node --test tests/js/*.test.mjs     # funkcje przeglądarkowe: Czyściciel, kadry, napisy, nazwy MP3, QR, liczenie wpisu
 tests/htaccess_test.sh              # .htaccess na Apache z macOS: blokady, typy plików, CSP
 ```
 

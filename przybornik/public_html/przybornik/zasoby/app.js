@@ -14,6 +14,7 @@ const MODULY = {
   mp3: './narzedzia/mp3.js',
   czysciciel: './narzedzia/czysciciel.js',
   qr: './narzedzia/qr.js',
+  wpis: './narzedzia/wpis.js',
 };
 
 const uruchomione = new Map();

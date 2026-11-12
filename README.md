@@ -6,7 +6,7 @@ Trzy małe aplikacje w PHP, które działają na zwykłym hostingu współdzielo
 |---|---|---|---|
 | [Skracacz](skracacz/) | Krótkie linki z własnej domeny, panel, statystyki dzienne, API | SQLite | [go.sokolinski.com](https://go.sokolinski.com) |
 | [Chmura](chmura/) | Ankieta, której odpowiedzi rosną na żywo w chmurę słów, z widokiem na rzutnik i kodem QR | pliki JSON | [sokolinski.com/chmura](https://sokolinski.com/chmura/) |
-| [Przybornik](przybornik/) | Jedenaście narzędzi do plików w jednej stronie: zdjęcia do zadanego rozmiaru, kadry na sociale, odchudzanie i składanie PDF, karuzele, OCR, wideo w pionie, dźwięk z filmów do MP3, czyszczenie metadanych, kody QR. Prowadzi też do chmury i skracacza | bez bazy | [sokolinski.com/przybornik](https://sokolinski.com/przybornik/) |
+| [Przybornik](przybornik/) | Dwanaście narzędzi w jednej stronie: zdjęcia do zadanego rozmiaru, kadry na sociale, odchudzanie i składanie PDF, karuzele, OCR, wideo w pionie, dźwięk z filmów do MP3, czyszczenie metadanych, kody QR, podgląd wpisu na LinkedIn i X. Prowadzi też do chmury i skracacza | bez bazy | [sokolinski.com/przybornik](https://sokolinski.com/przybornik/) |
 
 Każda aplikacja ma w swoim katalogu `README.md` z instalacją, opisem działania i testami.
 

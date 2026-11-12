@@ -1,5 +1,15 @@
 # Dziennik zmian
 
+## 1.4.0 (2026-11-12)
+
+- Nowe narzędzie „Podgląd wpisu” (grupa „Wideo i inne”, § 12). Wklejasz tekst i widzisz, co LinkedIn pokaże przed „…więcej” w telefonie i na komputerze, czy pierwsze zdanie mieści się w całości, ile znaków policzy X (próg 250 albo 280, z podświetleniem nadmiaru) i czy wpis mieści się w limitach LinkedIn (3000), X (280) i Instagram (2200).
+- LinkedIn nie podaje, gdzie ucina wpis, a zestawienia w sieci się różnią. Narzędzie mierzy więc 3 linijki prawdziwego tekstu w czcionce systemowej i szerokości kanału (telefon 361 px, komputer 504 px), zamiast liczyć znaki na sztywno. Dzięki temu puste linijki i punktory zabierają miejsce tak jak w kanale. Polski tekst wychodzi na ok. 130–140 znaków w telefonie i 210–225 na komputerze.
+- X liczy według reguł twitter-text v3: polskie litery, „cudzysłowy” i półpauza po 1, emoji, wielokropek „…”, strzałki i punktory po 2, każdy link (także sokolinski.com bez https) po 23.
+- Szkic zostaje w tej przeglądarce (localStorage) do wyczyszczenia. Tekst nie idzie na serwer.
+- Odnośniki „Moje aplikacje” mają teraz numery 13 i 14.
+
+Sprawdzone: 15 testów funkcji przeglądarkowych (w tym liczenie X: emoji złożone, flagi, linki bez https, adres e-mail, NFC), 17 testów serwera na PHP 8.4 i 8.1; w Chromium na lokalnej kopii wpis 504 znaków (telefon 138 znaków przed „…więcej”, komputer do końca pierwszego akapitu), rozwijanie i zwijanie, próg 250/280, krótki i pusty wpis, szkic po przeładowaniu, układ na ekranie 375 px.
+
 ## 1.3.0 (2026-11-12)
 
 - Nowe narzędzie „MP4 do MP3” (grupa „Wideo i inne”, § 09): wyciąga dźwięk z filmów (MP4, MOV, M4A, WebM, MKV, WAV) do plików MP3 w jakości 128, 192 albo 320 kb/s. Kilka plików naraz, „Pobierz wszystko (ZIP)”, przerwanie w trakcie. Tytuł i inne tagi z filmu przechodzą do MP3. Pliki bez ścieżki dźwiękowej dostają czytelny komunikat zamiast błędu.
