@@ -66,6 +66,16 @@ test('Wideo: napisy SRT i VTT, łamanie wierszy', async () => {
   assert.deepEqual(lamTekst(kontekst, 'raz dwa trzy cztery\npięć', 80), ['raz dwa', 'trzy', 'cztery', 'pięć']);
 });
 
+test('MP4 do MP3: nazwy plików i czas', async () => {
+  const { nazwaMp3, czas, JAKOSCI } = await modul('narzedzia/mp3.js');
+  assert.equal(nazwaMp3('Wykład 3.mov', 192), 'Wykład 3.mp3');
+  assert.equal(nazwaMp3('film.v2.MP4', 128), 'film.v2.mp3');
+  assert.equal(nazwaMp3('Nagranie.MP3', 128), 'Nagranie-128kbps.mp3');
+  assert.equal(nazwaMp3('.mp4', 192), 'dzwiek.mp3');
+  assert.deepEqual([0, 7.4, 59.6, 725, 3723, NaN].map(czas), ['0:00', '0:07', '1:00', '12:05', '1:02:03', '0:00']);
+  assert.deepEqual(JAKOSCI.map(([k]) => k), [128, 192, 320]);
+});
+
 test('QR: macierz i SVG', async () => {
   const { macierz, naSvg } = await modul('narzedzia/qr.js');
   const piaskownica = {};

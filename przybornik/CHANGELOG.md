@@ -1,5 +1,15 @@
 # Dziennik zmian
 
+## 1.3.0 (2026-11-12)
+
+- Nowe narzędzie „MP4 do MP3” (grupa „Wideo i inne”, § 09): wyciąga dźwięk z filmów (MP4, MOV, M4A, WebM, MKV, WAV) do plików MP3 w jakości 128, 192 albo 320 kb/s. Kilka plików naraz, „Pobierz wszystko (ZIP)”, przerwanie w trakcie. Tytuł i inne tagi z filmu przechodzą do MP3. Pliki bez ścieżki dźwiękowej dostają czytelny komunikat zamiast błędu.
+- Działa w przeglądarce, bo PHP na Zenboxie nie uruchomi ffmpeg. Przeglądarki nie mają własnego kodera MP3, dlatego koduje LAME 3.100 jako WebAssembly z dodatku `@mediabunny/mp3-encoder` 1.65.2 (0,5 MB, w osobnym wątku). Dekoduje WebCodecs przez Mediabunny, tak jak w Pionie do sociali.
+- `scripts/biblioteki.sh` pobiera dodatek i podmienia w nim import `mediabunny` na ścieżkę do pliku obok. Przeglądarka bez mapy importów nie zna nazwy pakietu, a ten sam adres modułu sprawia, że zarejestrowany koder widzi ta sama kopia Mediabunny, której używa narzędzie.
+- Numery w spisie od Czyściciela w dół przesunęły się o jeden.
+- Licencja kodu: MIT zamiast Apache 2.0, razem z pozostałymi małymi appkami. Logo BS nadal poza licencją, biblioteki zachowują własne licencje.
+
+Sprawdzone: 14 testów funkcji przeglądarkowych; w Chrome na lokalnej kopii pięć plików naraz (MP4, MOV, M4A, film bez dźwięku, film 5 min stereo). Film 5 min zamienił się w 3,8 s przy 192 kb/s i w 3,1 s przy 320 kb/s; każde MP3 odtwarza się z właściwą długością, stereo i tytułem. Przerwanie w połowie nie zostawia wyniku. Pion do sociali dalej się wczytuje.
+
 ## 1.2.0 (2026-11-11)
 
 - Nowa grupa „Moje aplikacje” z odnośnikami do chmury słów (formularz, rzutnik jasny i ciemny, panel) i do panelu skracacza. Obie aplikacje działają osobno, Przybornik tylko do nich prowadzi. Listę zmienia stała `APLIKACJE` w konfiguracji.

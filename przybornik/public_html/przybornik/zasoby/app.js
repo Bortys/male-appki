@@ -11,6 +11,7 @@ const MODULY = {
   karuzela: './narzedzia/karuzela.js',
   ocr: './narzedzia/ocr.js',
   wideo: './narzedzia/wideo.js',
+  mp3: './narzedzia/mp3.js',
   czysciciel: './narzedzia/czysciciel.js',
   qr: './narzedzia/qr.js',
 };

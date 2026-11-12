@@ -6,7 +6,7 @@
    ========================================================================= */
 declare(strict_types=1);
 
-const WERSJA = '1.2.0';
+const WERSJA = '1.3.0';
 const CIASTECZKO = 'przybornik';
 const WAZNOSC_SESJI = 30 * 86400;      // logowanie pamiętane 30 dni
 const PROBY_OKNO = 900;                // 15 minut
@@ -257,6 +257,7 @@ function narzedzia(): array {
         ],
         'Wideo i inne' => [
             'wideo'      => ['Pion do sociali', 'Film w formacie 9:16, 1:1 albo 4:5, przycięty i zmieszczony w limicie.'],
+            'mp3'        => ['MP4 do MP3', 'Wyciąga dźwięk z filmu do pliku MP3. Kilka filmów naraz.'],
             'czysciciel' => ['Czyściciel', 'Usuwa metadane ze zdjęć, PDF-ów i plików Office.'],
             'qr'         => ['QR z logo', 'Kod QR w kolorach marki, jako PNG i SVG.'],
         ],

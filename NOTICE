@@ -5,21 +5,20 @@ https://sokolinski.com
 Autor oprogramowania: Bartosz Sokoliński (https://sokolinski.com).
 Software author: Bartosz Sokoliński (https://sokolinski.com).
 
-Kod jest udostępniony na licencji Apache 2.0 (plik LICENSE). Kto rozpowszechnia
-ten kod albo oparte na nim dzieła, musi zachować tę informację o autorstwie,
-zgodnie z punktem 4(d) licencji.
+Kod jest udostępniony na licencji MIT (plik LICENSE). Kto rozpowszechnia ten kod
+albo jego istotne części, musi dołączyć informację o autorstwie i treść licencji.
 
 
 Czego licencja nie obejmuje
 ---------------------------
 
 Logo BS (pliki logo-bs.png) oraz nazwisko Bartosz Sokoliński jako oznaczenie
-produktu nie są objęte licencją Apache 2.0. Wszelkie prawa zastrzeżone. Zanim
+produktu nie są objęte licencją MIT. Wszelkie prawa zastrzeżone. Zanim
 uruchomisz te aplikacje u siebie, wymień logo i oznaczenia w plikach stron na
 własne. Nie dotyczy to informacji o autorstwie z tego pliku, którą trzeba zachować.
 
 The BS logo (logo-bs.png files) and the name Bartosz Sokoliński used as a product
-mark are not covered by the Apache 2.0 license. All rights reserved.
+mark are not covered by the MIT license. All rights reserved.
 
 
 Składniki innych autorów
@@ -47,7 +46,7 @@ razem z plikami licencji. Każda zachowuje własną licencję:
     Źródła kompilacji: https://github.com/jsscheller/ghostscript-wasm
     Źródła Ghostscripta: https://ghostscript.com/releases/
     Ghostscript działa jako osobny program w przeglądarce (Web Worker) i nie jest
-    objęty licencją Apache 2.0 tego repozytorium. Kto udostępnia Przybornik
+    objęty licencją MIT tego repozytorium. Kto udostępnia Przybornik
     publicznie, przekazuje gościom ten program i musi wskazać jego licencję oraz
     źródła (robi to strona przybornik/licencje.html).
   pdf.js 6.5.438 (Mozilla Foundation)            Apache License 2.0
@@ -55,6 +54,12 @@ razem z plikami licencji. Każda zachowuje własną licencję:
   Tesseract.js 7.0.0, tesseract.js-core 7.0.0    Apache License 2.0
   Dane języków Tesseract: pol, eng (best_int)    Apache License 2.0
   Mediabunny 1.65.2 (Vanilagy)                   Mozilla Public License 2.0
+  @mediabunny/mp3-encoder 1.65.2 (Vanilagy)      Mozilla Public License 2.0
+    zawiera LAME 3.100 jako WebAssembly          GNU Lesser General Public License
+    LAME: https://lame.sourceforge.io
+    Źródła kompilacji: https://github.com/Vanilagy/mediabunny (packages/mp3-encoder)
+    Jedyna zmiana w pobranym pliku to ścieżka importu „mediabunny”
+    (przybornik/scripts/biblioteki.sh). Licencja LAME trafia do lib/mp3.
   fflate 0.8.3 (Arjun Barrett)                   MIT
   qrcode-generator 1.4.4 (Kazuhiko Arase)        MIT
 

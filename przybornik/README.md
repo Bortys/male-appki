@@ -1,6 +1,6 @@
 # Przybornik (sokolinski.com/przybornik)
 
-Dziesięć małych narzędzi do plików w jednej stronie: zdjęcia, PDF, wideo, kod QR. Strona jest otwarta, bez hasła (hasło jest opcją), i ukryta przed wyszukiwarkami. Działa na zwykłym hostingu z PHP (Zenbox), bez bazy danych, bez builda i bez zewnętrznych usług. Wygląd: system marki BS (oxblood na papierze, EB Garamond, Carlito, Inconsolata).
+Jedenaście małych narzędzi do plików w jednej stronie: zdjęcia, PDF, wideo, dźwięk, kod QR. Strona jest otwarta, bez hasła (hasło jest opcją), i ukryta przed wyszukiwarkami. Działa na zwykłym hostingu z PHP (Zenbox), bez bazy danych, bez builda i bez zewnętrznych usług. Wygląd: system marki BS (oxblood na papierze, EB Garamond, Carlito, Inconsolata).
 
 | § | Narzędzie | Co robi | Gdzie pracuje |
 |---|---|---|---|
@@ -12,12 +12,13 @@ Dziesięć małych narzędzi do plików w jednej stronie: zdjęcia, PDF, wideo, 
 | 06 | Karuzela | PDF albo grafiki jako strony 4:5, 1:1, 9:16, 16:9; PDF na LinkedIn albo ZIP obrazów | przeglądarka |
 | 07 | PDF z tekstem | zdjęcia kartek i skany jako PDF z warstwą tekstu (OCR po polsku) plus TXT | przeglądarka (Tesseract) |
 | 08 | Pion do sociali | film w formacie kanału, przycięty, w limicie MB, z wypalonymi napisami SRT | przeglądarka (WebCodecs, Mediabunny) |
-| 09 | Czyściciel | usuwa metadane ze zdjęć, PDF-ów i plików Office, pokazuje, co znalazł | przeglądarka; HEIC, WebP i TIFF na serwerze |
-| 10 | QR z logo | kod QR w kolorach marki, PNG i SVG | przeglądarka |
-| 11 | Chmura słów | odnośniki do ankiety z chmurą słów: formularz, rzutnik, panel | osobna aplikacja |
-| 12 | Skracacz linków | odnośnik do panelu skracacza go.sokolinski.com | osobna aplikacja |
+| 09 | MP4 do MP3 | dźwięk z filmów jako MP3 (128, 192 albo 320 kb/s), kilka plików naraz, ZIP | przeglądarka (WebCodecs, LAME jako WebAssembly) |
+| 10 | Czyściciel | usuwa metadane ze zdjęć, PDF-ów i plików Office, pokazuje, co znalazł | przeglądarka; HEIC, WebP i TIFF na serwerze |
+| 11 | QR z logo | kod QR w kolorach marki, PNG i SVG | przeglądarka |
+| 12 | Chmura słów | odnośniki do ankiety z chmurą słów: formularz, rzutnik, panel | osobna aplikacja |
+| 13 | Skracacz linków | odnośnik do panelu skracacza go.sokolinski.com | osobna aplikacja |
 
-Grupa „Moje aplikacje” (§ 11 i 12) to tylko odnośniki: chmura słów i skracacz działają osobno, z własnymi panelami i hasłami (kod w katalogach [`chmura/`](../chmura/) i [`skracacz/`](../skracacz/) tego repozytorium). Listę odnośników można zmienić stałą `APLIKACJE` w konfiguracji.
+Grupa „Moje aplikacje” (§ 12 i 13) to tylko odnośniki: chmura słów i skracacz działają osobno, z własnymi panelami i hasłami (kod w katalogach [`chmura/`](../chmura/) i [`skracacz/`](../skracacz/) tego repozytorium). Listę odnośników można zmienić stałą `APLIKACJE` w konfiguracji.
 
 Serwer robi tylko to, w czym jest lepszy: czyta HEIC i dobiera jakość JPG z dokładnością do punktu. Na Zenboxie PHP nie może uruchamiać programów (`exec` wyłączone), więc Ghostscript, Tesseract i kodowanie wideo działają w przeglądarce. Pliki obrabiane w przeglądarce nie opuszczają komputera; pliki wysłane do Ściskacza i Kadrownika serwer przerabia w pamięci i niczego nie zapisuje.
 
@@ -26,7 +27,7 @@ Serwer robi tylko to, w czym jest lepszy: czyta HEIC i dobiera jakość JPG z do
 - `public_html/przybornik/` odpowiada `public_html/przybornik` na serwerze
   - `index.php` (strona, opcjonalne logowanie), `api.php` (obróbka zdjęć), `wspolne.php`, `obrazy.php`
   - `zasoby/` styl, fonty, moduły narzędzi (`narzedzia/*.js`), robotnik Ghostscripta
-  - `lib/` biblioteki przeglądarkowe (37 MB). Nie są w repozytorium: odtwarza je `scripts/biblioteki.sh`
+  - `lib/` biblioteki przeglądarkowe (38 MB). Nie są w repozytorium: odtwarza je `scripts/biblioteki.sh`
   - `dane/` licznik żądań i nieudanych logowań (tylko na serwerze)
 - `konfiguracja.example.php` wzór opcjonalnego `konfiguracja.php` (hasło, limity)
 - `scripts/biblioteki.sh` pobiera biblioteki w przypiętych wersjach, `scripts/paczka.sh` buduje paczkę do wgrania
@@ -66,14 +67,14 @@ W obu trybach:
 
 PHP 8.1 do 8.4 z rozszerzeniami Imagick (z obsługą HEIC) i zip. Stan Zenboxa z 11.11.2026: PHP 8.1.34, ImageMagick 7.1.2, limit wysyłki 512 MB, 90 s na żądanie.
 
-Przeglądarka: aktualny Chrome, Edge albo Safari. Pion do sociali wymaga WebCodecs z kodowaniem H.264 (Chrome, Edge, Safari 17 i nowsze).
+Przeglądarka: aktualny Chrome, Edge albo Safari. Pion do sociali wymaga WebCodecs z kodowaniem H.264 (Chrome, Edge, Safari 17 i nowsze). MP4 do MP3 potrzebuje dekodera dźwięku WebCodecs (sprawdzone w Chrome, Safari jeszcze nie); MP3 koduje LAME w WebAssembly, więc przeglądarka nie musi umieć zapisywać MP3. Gdy przeglądarka nie odczyta dźwięku, narzędzie mówi to przy pliku.
 
 ## Testy
 
 ```bash
 python3 tests/uruchom.py            # serwer: logowanie, blokady, Ściskacz, Kadrownik (Docker, PHP 8.4 z Imagick)
 PHP=8.1 python3 tests/uruchom.py    # to samo na wersji z serwera
-node --test tests/js/*.test.mjs     # funkcje przeglądarkowe: Czyściciel, kadry, napisy, QR
+node --test tests/js/*.test.mjs     # funkcje przeglądarkowe: Czyściciel, kadry, napisy, nazwy MP3, QR
 tests/htaccess_test.sh              # .htaccess na Apache z macOS: blokady, typy plików, CSP
 ```
 
@@ -81,6 +82,6 @@ Podgląd lokalny: `docker run --rm -p 18111:8000 -v "$PWD":/repo przybornik-test
 
 ## Licencje
 
-Kod aplikacji: Apache 2.0 ([`../LICENSE`](../LICENSE)), autor Bartosz Sokoliński; przy rozpowszechnianiu trzeba zachować [`../NOTICE`](../NOTICE). Licencja nie obejmuje logo BS (`zasoby/logo-bs.png`). Biblioteki zachowują swoje licencje, lista w [`../NOTICE`](../NOTICE) i na stronie `przybornik/licencje.html`. Biblioteki przeglądarkowe nie są częścią tego repozytorium: `scripts/biblioteki.sh` pobiera je z npm w przypiętych wersjach, razem z ich plikami licencji.
+Kod aplikacji: MIT ([`../LICENSE`](../LICENSE)), autor Bartosz Sokoliński; przy rozpowszechnianiu kodu albo jego istotnej części trzeba dołączyć informację o autorstwie i treść licencji. Licencja nie obejmuje logo BS (`zasoby/logo-bs.png`). Biblioteki zachowują swoje licencje, lista w [`../NOTICE`](../NOTICE) i na stronie `przybornik/licencje.html`. Biblioteki przeglądarkowe nie są częścią tego repozytorium: `scripts/biblioteki.sh` pobiera je z npm w przypiętych wersjach, razem z ich plikami licencji.
 
-Uwaga na Ghostscript (Odchudzacz PDF): jest na licencji GNU AGPL-3.0 i zostaje osobnym składnikiem w `lib/gs`, a nie częścią kodu na Apache 2.0. Kto wystawia Przybornik publicznie, przekazuje gościom program Ghostscript, więc musi im też wskazać jego licencję i źródła. Robi to strona `przybornik/licencje.html` i plik `lib/gs/LICENSE`. Jeśli zmienisz Ghostscripta, musisz udostępnić także swoje zmiany.
+Uwaga na Ghostscript (Odchudzacz PDF): jest na licencji GNU AGPL-3.0 i zostaje osobnym składnikiem w `lib/gs`, a nie częścią kodu na MIT. Kto wystawia Przybornik publicznie, przekazuje gościom program Ghostscript, więc musi im też wskazać jego licencję i źródła. Robi to strona `przybornik/licencje.html` i plik `lib/gs/LICENSE`. Jeśli zmienisz Ghostscripta, musisz udostępnić także swoje zmiany.

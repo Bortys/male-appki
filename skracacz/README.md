@@ -66,4 +66,4 @@ Drugi skrypt sprawdza reguły `.htaccess` na Apache z macOS. Serwer produkcyjny 
 
 ## Licencja
 
-Apache 2.0, autor: Bartosz Sokoliński. Szczegóły w plikach [LICENSE](../LICENSE) i [NOTICE](../NOTICE) w głównym katalogu repozytorium. Licencja nie obejmuje logo BS.
+MIT, autor: Bartosz Sokoliński. Szczegóły w plikach [LICENSE](../LICENSE) i [NOTICE](../NOTICE) w głównym katalogu repozytorium. Licencja nie obejmuje logo BS.
